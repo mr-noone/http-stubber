@@ -65,6 +65,26 @@ class HTTPMessageTests: XCTestCase {
     XCTAssertEqual(message.method, "TEST")
   }
   
+  func testRequestSerializedMessage() {
+    var request = URLRequest(url: URL(string: "http://127.0.0.1/path?id=123&key=value")!)
+    request.addValue("key1", forHTTPHeaderField: "value1")
+    request.addValue("key2", forHTTPHeaderField: "value2")
+    request.httpBody = "{\"key\":\"value\"}".data(using: .utf8)
+    
+    let message = HTTPMessage(request: request)
+    let messageStr =
+"""
+GET /path?id=123&key=value HTTP/1.1\r
+Host: 127.0.0.1\r
+value2: key2\r
+value1: key1\r
+\r
+{"key":"value"}
+"""
+    
+    XCTAssertEqual(message.serializedMessage, messageStr)
+  }
+  
   //MARK: - Common tests
   
   func testHTTPMessageHTTPVersion() {

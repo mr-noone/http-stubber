@@ -7,6 +7,7 @@
 //
 
 #import "HTTPMessage.h"
+#import <Foundation/NSDictionary.h>
 
 @interface HTTPMessage ()
 
@@ -18,7 +19,28 @@
 
 - (instancetype)initWithData:(NSData *)data isRequest:(BOOL)isRequest {
   CFHTTPMessageRef message = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, isRequest);
+  if (message == nil) return nil;
+  
   CFHTTPMessageAppendBytes(message, data.bytes, data.length);
+  
+  self = [super init];
+  _message = message;
+  return self;
+}
+
+- (instancetype)initWithRequest:(NSURLRequest *)request {
+  CFHTTPMessageRef message = CFHTTPMessageCreateRequest(kCFAllocatorDefault,
+                                                        (__bridge CFStringRef)request.HTTPMethod,
+                                                        (__bridge CFURLRef)request.URL,
+                                                        kCFHTTPVersion1_1);
+  if (message == nil) return nil;
+  
+  CFHTTPMessageSetBody(message, (__bridge CFDataRef)request.HTTPBody);
+  CFHTTPMessageSetHeaderFieldValue(message, (__bridge CFStringRef)@"Host", (__bridge CFStringRef)request.URL.host);
+  
+  [request.allHTTPHeaderFields enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+    CFHTTPMessageSetHeaderFieldValue(message, (__bridge CFStringRef)key, (__bridge CFStringRef)obj);
+  }];
   
   self = [super init];
   _message = message;
@@ -114,6 +136,19 @@
   CFRelease(body);
   
   return bodyData;
+}
+
+- (NSString *)serializedMessage {
+  CFDataRef message = CFHTTPMessageCopySerializedMessage(self.message);
+  if (message == 0x0) {
+    return nil;
+  }
+  
+  NSString *messageString = [[NSString alloc] initWithData:(__bridge NSData *)message
+                                                  encoding:NSUTF8StringEncoding];
+  CFRelease(message);
+  
+  return messageString;
 }
 
 @end

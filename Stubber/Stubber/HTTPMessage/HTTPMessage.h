@@ -11,9 +11,10 @@
 
 @interface HTTPMessage : NSObject
 
-+ (nonnull instancetype)new __attribute__((unavailable("use '-initWithMessage:' instead")));
-- (nonnull instancetype)init __attribute__((unavailable("use '-initWithMessage:' instead")));
++ (nonnull instancetype)new __attribute__((unavailable("use 'initWithData:isRequest:' instead")));
+- (nonnull instancetype)init __attribute__((unavailable("use 'initWithData:isRequest:' instead")));
 - (nonnull instancetype)initWithData:(nonnull NSData *)data isRequest:(BOOL)isRequest;
+- (nonnull instancetype)initWithRequest:(nonnull NSURLRequest *)request;
 
 @property (assign, nonatomic, readonly) NSInteger statusCode;
 @property (copy, nonatomic, readonly, nullable) NSString *host;
@@ -22,5 +23,6 @@
 @property (copy, nonatomic, readonly, nullable) NSString *httpVersion;
 @property (copy, nonatomic, readonly, nullable) NSDictionary<NSString *, NSString *> *headers;
 @property (copy, nonatomic, readonly, nullable) NSData *body;
+@property (copy, nonatomic, readonly, nullable) NSString *serializedMessage;
 
 @end

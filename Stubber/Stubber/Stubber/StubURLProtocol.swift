@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HTTPMessage
 
 protocol IStubURLProtocol where Self: URLProtocol {
   associatedtype C: StubConfigProtocol
@@ -73,7 +74,8 @@ final class StubURLProtocol<C: StubConfigProtocol>: URLProtocol, IStubURLProtoco
   
   override func startLoading() {
     guard let stub = StubURLProtocol.stub(for: self.request) else {
-      let reason = "An unexpected HTTP request was fired.\n\(request)"
+      let httpMessage = HTTPMessage(request: request).serializedMessage ?? ""
+      let reason = "An unexpected HTTP request was fired:\n\(httpMessage)\n"
       NSException(name: .genericException, reason: reason, userInfo: nil).raise()
       return
     }
