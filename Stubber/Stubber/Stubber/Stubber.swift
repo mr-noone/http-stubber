@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Configuration
 
 //MARK: - Private
 

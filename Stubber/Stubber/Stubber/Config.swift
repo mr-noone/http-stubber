@@ -26,7 +26,7 @@ final class Config: ConfigProtocol {
   static func configure() {
     if !isConfigured {
       Foundation.URLProtocol.registerClass(URLProtocol.self)
-      URLSessionConfiguration.registerURLProtocol(URLProtocol.self)
+      URLSessionConfiguration.registerClass(URLProtocol.self)
       isConfigured = true
     }
   }

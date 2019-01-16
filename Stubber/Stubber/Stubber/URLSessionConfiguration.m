@@ -1,17 +1,15 @@
 //
-//  NSObject+Runtime.m
-//  Temp
+//  URLSessionConfiguration+Stubber.m
+//  Stubber
 //
-//  Created by Aleksey Zgurskiy on 06.07.2018.
+//  Created by Aleksey Zgurskiy on 12/27/18.
 //  Copyright © 2018 Graviti Mobail, TOV. All rights reserved.
 //
 
-#import "NSObject+Runtime.h"
+#import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 @implementation NSObject (Runtime)
-
-#pragma mark - Swizzling
 
 + (void)swizzleClassMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector {
   Class class = object_getClass(self);
@@ -39,6 +37,28 @@
   } else {
     method_exchangeImplementations(originalMethod, swizzledMethod);
   }
+}
+
+@end
+
+@implementation NSURLSessionConfiguration (Stubber)
+
++ (void)load {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSArray *classes = self.defaultSessionConfiguration.protocolClasses;
+    [self setValue:classes forKey:@"defaultClasses"];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    [self swizzleInstanceMethod:@selector(copy)
+                     withMethod:@selector(st_copy)];
+    [self swizzleClassMethod:@selector(defaultSessionConfiguration)
+                  withMethod:@selector(st_defaultSessionConfiguration)];
+    [self swizzleClassMethod:@selector(ephemeralSessionConfiguration)
+                  withMethod:@selector(st_ephemeralSessionConfiguration)];
+#pragma clang diagnostic pop
+  });
 }
 
 @end
