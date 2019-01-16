@@ -13,7 +13,7 @@ public protocol StubRequest: class {
   @discardableResult func withBody(_ body: Data) -> StubRequest
   @discardableResult func withBody(contentsOf url: URL) throws -> StubRequest
   
-  @discardableResult func andResponse(_ statucCode: Int) -> StubResponse
+  @discardableResult func andResponse(_ statusCode: Int) -> StubResponse
   @discardableResult func andResponse(contentsOf url: URL) throws -> StubResponse
   @discardableResult func andFailWithError(_ error: Error) -> StubResponse
 }
@@ -36,8 +36,8 @@ extension StubRequest where Self: StubProtocol {
 }
 
 extension StubRequest where Self: StubProtocol & StubResponse {
-  func andResponse(_ statucCode: Int) -> StubResponse {
-    response.setStatusCode(statucCode)
+  func andResponse(_ statusCode: Int) -> StubResponse {
+    response.setStatusCode(statusCode)
     return self
   }
   
