@@ -18,8 +18,8 @@ protocol RequestProtocol: class {
   init()
   
   func setMethod(_ method: String, path: String, host: String?)
-  func setHeaders(_ headers: [String : String])
-  func setBody(_ body: Data)
+  func setHeaders(_ headers: [String : String]?)
+  func setBody(_ body: Data?)
 }
 
 class Request: RequestProtocol {
@@ -37,11 +37,11 @@ class Request: RequestProtocol {
     self.host = host
   }
   
-  func setHeaders(_ headers: [String : String]) {
+  func setHeaders(_ headers: [String : String]?) {
     self.headers = headers
   }
   
-  func setBody(_ body: Data) {
+  func setBody(_ body: Data?) {
     self.body = body
   }
 }

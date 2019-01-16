@@ -16,8 +16,8 @@ protocol ResponseProtocol: class {
   init()
   
   func setStatusCode(_ statusCode: Int)
-  func setHeaders(_ headers: [String : String])
-  func setBody(_ body: Data)
+  func setHeaders(_ headers: [String : String]?)
+  func setBody(_ body: Data?)
 }
 
 class Response: ResponseProtocol {
@@ -31,11 +31,11 @@ class Response: ResponseProtocol {
     self.statusCode = statusCode
   }
   
-  func setHeaders(_ headers: [String : String]) {
+  func setHeaders(_ headers: [String : String]?) {
     self.headers = headers
   }
   
-  func setBody(_ body: Data) {
+  func setBody(_ body: Data?) {
     self.body = body
   }
 }
