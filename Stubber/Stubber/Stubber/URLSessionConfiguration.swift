@@ -10,20 +10,18 @@ import Foundation
 
 extension URLSessionConfiguration {
   private class Store {
-    static let shared = Store()
-    
-    var isSwizzle = false
-    var protocols = [AnyClass]()
+    static var isSwizzle = false
+    static var protocols = [AnyClass]()
   }
   
   private static var isSwizzle: Bool {
-    get { return Store.shared.isSwizzle }
-    set { Store.shared.isSwizzle = newValue}
+    get { return Store.isSwizzle }
+    set { Store.isSwizzle = newValue}
   }
   
   private static var protocols: [AnyClass] {
-    get { return Store.shared.protocols }
-    set { Store.shared.protocols = newValue }
+    get { return Store.protocols }
+    set { Store.protocols = newValue }
   }
   
   static func containsURLProtocol(_ class: AnyClass) -> Bool {
@@ -47,15 +45,13 @@ extension URLSessionConfiguration {
     }
   }
   
-  private static func swizzle() {
-    let `class` = URLSessionConfiguration.self
-    
-    let defaultMethod = class_getClassMethod(`class`, #selector(getter: URLSessionConfiguration.default))
-    let st_defaultMethod = class_getClassMethod(`class`, #selector(URLSessionConfiguration.st_default))
+  static func swizzle() {
+    let defaultMethod = class_getClassMethod(self, #selector(getter: self.default))
+    let st_defaultMethod = class_getClassMethod(self, #selector(self.st_default))
     method_exchangeImplementations(defaultMethod!, st_defaultMethod!)
     
-    let ephemeralMethod = class_getClassMethod(`class`, #selector(getter: URLSessionConfiguration.ephemeral))
-    let st_ephemeralMethod = class_getClassMethod(`class`, #selector(URLSessionConfiguration.st_ephemeral))
+    let ephemeralMethod = class_getClassMethod(self, #selector(getter: self.ephemeral))
+    let st_ephemeralMethod = class_getClassMethod(self, #selector(self.st_ephemeral))
     method_exchangeImplementations(ephemeralMethod!, st_ephemeralMethod!)
   }
   

@@ -11,8 +11,8 @@ import Foundation
 
 class UTRequest: RequestProtocol {
   var host: String?
-  var path: String?
-  var method: String?
+  var path: String? = ""
+  var method: String? = "GET"
   var headers: [String : String]?
   var body: Data?
   

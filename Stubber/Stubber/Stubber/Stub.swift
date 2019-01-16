@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol StubProtocol: class {
+protocol StubProtocol: class, Equatable {
   associatedtype Request: RequestProtocol
   associatedtype Response: ResponseProtocol
   
@@ -16,12 +16,10 @@ protocol StubProtocol: class {
   var response: Response { get }
 }
 
-class Stub<Request: RequestProtocol, Response: ResponseProtocol>: StubProtocol, StubRequest, StubResponse {
+final class Stub<Request: RequestProtocol, Response: ResponseProtocol>: StubProtocol, StubRequest, StubResponse {
   private(set) lazy var request: Request = Request()
   private(set) lazy var response: Response = Response()
-}
-
-extension Stub: Equatable {
+  
   static func == (left: Stub<Request, Response>, right: Stub<Request, Response>) -> Bool {
     return left.request == right.request && left.response == right.response
   }

@@ -22,7 +22,7 @@ protocol RequestProtocol: class, Equatable {
   func setBody(_ body: Data?)
 }
 
-class Request: RequestProtocol {
+final class Request: RequestProtocol {
   private(set) var host: String?
   private(set) var path: String?
   private(set) var method: String?

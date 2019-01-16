@@ -22,7 +22,7 @@ protocol ResponseProtocol: class, Equatable {
   func setBody(_ body: Data?)
 }
 
-class Response: ResponseProtocol {
+final class Response: ResponseProtocol {
   private(set) var statusCode: Int?
   private(set) var error: Error?
   private(set) var headers: [String : String]?
