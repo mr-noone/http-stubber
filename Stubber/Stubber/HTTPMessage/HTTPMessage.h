@@ -19,6 +19,7 @@
 @property (copy, nonatomic, readonly, nullable) NSString *host;
 @property (copy, nonatomic, readonly, nullable) NSString *path;
 @property (copy, nonatomic, readonly, nullable) NSString *method;
+@property (copy, nonatomic, readonly, nullable) NSString *httpVersion;
 @property (copy, nonatomic, readonly, nullable) NSDictionary<NSString *, NSString *> *headers;
 @property (copy, nonatomic, readonly, nullable) NSData *body;
 

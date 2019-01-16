@@ -79,6 +79,18 @@
   return methodString;
 }
 
+- (NSString *)httpVersion {
+  CFStringRef version = CFHTTPMessageCopyVersion(self.message);
+  if (version == 0x0) {
+    return nil;
+  }
+  
+  NSString *httpVersion = (__bridge NSString *)version;
+  CFRelease(version);
+  
+  return httpVersion;
+}
+
 - (NSDictionary<NSString *,NSString *> *)headers {
   CFDictionaryRef headers = CFHTTPMessageCopyAllHeaderFields(self.message);
   if (CFDictionaryGetCount(headers) == 0) {

@@ -67,6 +67,16 @@ class HTTPMessageTests: XCTestCase {
   
   //MARK: - Common tests
   
+  func testHTTPMessageHTTPVersion() {
+    setUpWith(message: "POST / HTTP/0.9\n\n", isRequest: true)
+    XCTAssertEqual(message.httpVersion, "HTTP/0.9")
+  }
+  
+  func testHTTPMessageHTTPVersionEmpty() {
+    setUpWith(message: "POST /\n\n", isRequest: true)
+    XCTAssertNil(message.httpVersion)
+  }
+  
   func testHTTPMessageHeadersEmpty() {
     setUpWith(message: "HTTP/1.1 200\n\n", isRequest: false)
     XCTAssertNil(message.headers)
