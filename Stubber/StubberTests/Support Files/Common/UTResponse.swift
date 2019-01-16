@@ -27,4 +27,10 @@ class UTResponse: ResponseProtocol {
   func setBody(_ body: Data?) {
     self.body = body
   }
+  
+  static func == (left: UTResponse, right: UTResponse) -> Bool {
+    return left.statusCode == right.statusCode &&
+      left.headers == right.headers &&
+      left.body == right.body
+  }
 }

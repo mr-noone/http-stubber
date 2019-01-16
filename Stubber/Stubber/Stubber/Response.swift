@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ResponseProtocol: class {
+protocol ResponseProtocol: class, Equatable {
   var statusCode: Int? { get }
   var headers: [String : String]? { get }
   var body: Data? { get }
@@ -37,5 +37,11 @@ class Response: ResponseProtocol {
   
   func setBody(_ body: Data?) {
     self.body = body
+  }
+  
+  static func == (left: Response, right: Response) -> Bool {
+    return left.statusCode == right.statusCode &&
+      left.headers == right.headers &&
+      left.body == right.body
   }
 }

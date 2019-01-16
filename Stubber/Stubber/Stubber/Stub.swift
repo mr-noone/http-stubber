@@ -20,3 +20,9 @@ class Stub<Request: RequestProtocol, Response: ResponseProtocol>: StubProtocol, 
   private(set) lazy var request: Request = Request()
   private(set) lazy var response: Response = Response()
 }
+
+extension Stub: Equatable {
+  static func == (left: Stub<Request, Response>, right: Stub<Request, Response>) -> Bool {
+    return left.request == right.request && left.response == right.response
+  }
+}

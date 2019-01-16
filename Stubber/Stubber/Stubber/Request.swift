@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RequestProtocol: class {
+protocol RequestProtocol: class, Equatable {
   var host: String? { get }
   var path: String? { get }
   var method: String? { get }
@@ -43,5 +43,13 @@ class Request: RequestProtocol {
   
   func setBody(_ body: Data?) {
     self.body = body
+  }
+  
+  static func == (left: Request, right: Request) -> Bool {
+    return left.host == right.host &&
+      left.path == right.path &&
+      left.method == right.method &&
+      left.headers == right.headers &&
+      left.body == right.body
   }
 }

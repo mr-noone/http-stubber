@@ -31,4 +31,12 @@ class UTRequest: RequestProtocol {
   func setBody(_ body: Data?) {
     self.body = body
   }
+  
+  static func == (left: UTRequest, right: UTRequest) -> Bool {
+    return left.host == right.host &&
+      left.path == right.path &&
+      left.method == right.method &&
+      left.headers == right.headers &&
+      left.body == right.body
+  }
 }

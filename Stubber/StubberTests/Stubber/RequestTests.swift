@@ -32,4 +32,26 @@ class RequestTests: XCTestCase {
     request.setBody(body)
     XCTAssertEqual(request.body, body)
   }
+  
+  func testRequestIsEqual() {
+    let request1 = Request()
+    request1.setMethod("POST", path: "/path/to", host: "127.0.0.1")
+    request1.setHeaders(["header1" : "value1", "header2" : "value2"])
+    request1.setBody("body".data(using: .utf8)!)
+    
+    let request2 = Request()
+    request2.setMethod("POST", path: "/path/to", host: "127.0.0.1")
+    request2.setHeaders(["header1" : "value1", "header2" : "value2"])
+    request2.setBody("body".data(using: .utf8)!)
+    
+    XCTAssertEqual(request1, request2)
+  }
+  
+  func testRequestNotEqual() {
+    let request = Request()
+    request.setMethod("POST", path: "/path/to", host: "127.0.0.1")
+    request.setHeaders(["header1" : "value1", "header2" : "value2"])
+    request.setBody("body".data(using: .utf8)!)
+    XCTAssertNotEqual(request, Request())
+  }
 }

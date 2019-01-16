@@ -29,4 +29,27 @@ class ResponseTests: XCTestCase {
     response.setBody(body)
     XCTAssertEqual(response.body, body)
   }
+  
+  func tetResponseIsEqual() {
+    let response1 = Response()
+    response1.setStatusCode(204)
+    response1.setHeaders(["header1" : "value1", "header2" : "value2"])
+    response1.setBody("body".data(using: .utf8)!)
+    
+    let response2 = Response()
+    response2.setStatusCode(204)
+    response2.setHeaders(["header1" : "value1", "header2" : "value2"])
+    response2.setBody("body".data(using: .utf8)!)
+    
+    XCTAssertEqual(response1, response2)
+  }
+  
+  func testResponseNotEqual() {
+    let response = Response()
+    response.setStatusCode(204)
+    response.setHeaders(["header1" : "value1", "header2" : "value2"])
+    response.setBody("body".data(using: .utf8)!)
+    
+    XCTAssertNotEqual(response, Response())
+  }
 }
