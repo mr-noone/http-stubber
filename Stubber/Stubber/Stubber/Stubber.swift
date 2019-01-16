@@ -11,7 +11,7 @@ import Configuration
 import HTTPMessage
 
 private typealias StubType = Stub<Request, Response>
-private typealias URLProtocolType = StubURLProtocol<StubType>
+private typealias URLProtocolType = StubURLProtocol<Config>
 
 private var isConfigured = false
 
@@ -52,5 +52,5 @@ public func removeAllStubs() {
 }
 
 public func setTestEnvironment() {
-  URLProtocolType.setTestEnvironment(true)
+  URLProtocolType.setTestEnvironment()
 }

@@ -11,11 +11,12 @@ import HTTPMessage
 @testable import Stubber
 
 class StubRequestTests: XCTestCase {
+  private typealias Stub = UTStub<UTRequest, UTResponse>
   private var stub: StubRequest!
   
   override func setUp() {
     super.setUp()
-    stub = UTStub<UTRequest, UTResponse>()
+    stub = Stub()
   }
   
   override func tearDown() {
@@ -26,25 +27,25 @@ class StubRequestTests: XCTestCase {
   func testStubRequestWithHeaders() {
     let headers = ["key1" : "value1", "key2" : "value2"]
     stub.withHeaders(headers)
-    XCTAssertEqual((stub as! UTStub<UTRequest, UTResponse>).request.headers, headers)
+    XCTAssertEqual((stub as! Stub).request.headers, headers)
   }
   
   func testStubRequestWithBody() {
     let body = "Body".data(using: .utf8)!
     stub.withBody(body)
-    XCTAssertEqual((stub as! UTStub<UTRequest, UTResponse>).request.body, body)
+    XCTAssertEqual((stub as! Stub).request.body, body)
   }
   
   func testStubRequestWithBodyContentsOf() {
     let url = bundle.url(forResource: "Body", withExtension: "json")!
     let body = try! Data(contentsOf: url)
     try! stub.withBody(contentsOf: url)
-    XCTAssertEqual((stub as! UTStub<UTRequest, UTResponse>).request.body, body)
+    XCTAssertEqual((stub as! Stub).request.body, body)
   }
   
   func testStubRequestAndResponse() {
     stub.andResponse(204)
-    XCTAssertEqual((stub as! UTStub<UTRequest, UTResponse>).response.statusCode, 204)
+    XCTAssertEqual((stub as! Stub).response.statusCode, 204)
   }
   
   func testStubRequestAndResponseContentsOf() {
@@ -52,7 +53,7 @@ class StubRequestTests: XCTestCase {
     let data = try! Data(contentsOf: url)
     let message = HTTPMessage(data: data, isRequest: false)
     try! self.stub.andResponse(contentsOf: url)
-    let stub = self.stub as! UTStub<UTRequest, UTResponse>
+    let stub = self.stub as! Stub
     
     XCTAssertEqual(stub.response.statusCode, message.statusCode)
     XCTAssertEqual(stub.response.headers, message.headers)
@@ -62,7 +63,7 @@ class StubRequestTests: XCTestCase {
   func testStubRequestAndResponseWithError() {
     let error = NSError(domain: "domain", code: 101, userInfo: nil)
     self.stub.andFailWithError(error)
-    let stub = self.stub as! UTStub<UTRequest, UTResponse>
+    let stub = self.stub as! Stub
     XCTAssertEqual(stub.response.error! as NSError, error)
   }
 }

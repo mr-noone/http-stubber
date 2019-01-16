@@ -8,45 +8,40 @@
 
 import Foundation
 
-private final class Store {
-  static var stubs = [AnyObject]()
-  static var isTestEnvironment = false
-}
-
-final class StubURLProtocol<Stub: StubProtocol>: URLProtocol {
+final class StubURLProtocol<C: ConfigProtocol>: URLProtocol {
   //MARK: - Properties
   
-  private(set) static var stubs: [Stub] {
-    get { return Store.stubs as! [Stub] }
-    set { Store.stubs = newValue }
+  private(set) static var stubs: [C.Stub] {
+    get { return C.stubs }
+    set { C.stubs = newValue }
   }
   
   private(set) static var isTestEnvironment: Bool {
-    get { return Store.isTestEnvironment }
-    set { Store.isTestEnvironment = newValue }
+    get { return C.isTestEnvironment }
+    set { C.isTestEnvironment = newValue }
   }
   
   //MARK: - Stubs management
   
-  static func addStub(_ stub: Stub) {
+  static func addStub(_ stub: C.Stub) {
     stubs.append(stub)
   }
   
-  static func removeStub(_ stub: Stub) {
+  static func removeStub(_ stub: C.Stub) {
     if let index = stubs.index(where: { $0 == stub }) {
       stubs.remove(at: index)
     }
   }
   
   static func removeAllStubs() {
-    stubs = [Stub]()
+    stubs = [C.Stub]()
   }
   
-  static func setTestEnvironment(_ isTestEnvironment: Bool) {
-    self.isTestEnvironment = isTestEnvironment
+  static func setTestEnvironment() {
+    isTestEnvironment = true
   }
   
-  private static func stub(for request: URLRequest) -> Stub? {
+  private static func stub(for request: URLRequest) -> C.Stub? {
     return stubs.first() {
       return ($0.request.host == nil ? true : $0.request.host == request.url?.host) &&
         $0.request.path == request.url?.path &&
@@ -66,7 +61,9 @@ final class StubURLProtocol<Stub: StubProtocol>: URLProtocol {
   
   override func startLoading() {
     guard let stub = StubURLProtocol.stub(for: self.request) else {
-      fatalError("An unexpected HTTP request was fired.\n\(request)")
+      let reason = "An unexpected HTTP request was fired.\n\(request)"
+      NSException(name: .genericException, reason: reason, userInfo: nil).raise()
+      return
     }
     
     if let error = stub.response.error {
