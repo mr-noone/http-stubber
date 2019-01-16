@@ -7,23 +7,22 @@
 //
 
 import Foundation
+import Configuration
 import HTTPMessage
 
 private typealias StubType = Stub<Request, Response>
 private typealias URLProtocolType = StubURLProtocol<StubType>
 
-public func startStubber() {
-  URLProtocol.registerClass(URLProtocolType.self)
-  URLSessionConfiguration.registerURLProtocol(URLProtocolType.self)
-}
-
-public func stopStubber() {
-  URLProtocol.unregisterClass(URLProtocolType.self)
-  URLSessionConfiguration.unregisterURLProtocol(URLProtocolType.self)
-}
+private var isConfigured = false
 
 @discardableResult
 public func stubRequest(_ method: String, path: String, host: String? = nil) -> StubRequest {
+  if !isConfigured {
+    URLProtocol.registerClass(URLProtocolType.self)
+    URLSessionConfiguration.registerURLProtocol(URLProtocolType.self)
+    isConfigured = true
+  }
+  
   let stub = StubType()
   stub.request.setMethod(method, path: path, host: host)
   URLProtocolType.addStub(stub)
@@ -45,9 +44,7 @@ public func stubRequest(contentsOf url: URL) throws -> StubRequest {
 }
 
 public func removeStub(_ stub: StubRequest) {
-  if let stub = stub as? StubType {
-    URLProtocolType.removeStub(stub)
-  }
+  URLProtocolType.removeStub(stub as! StubType)
 }
 
 public func removeAllStubs() {

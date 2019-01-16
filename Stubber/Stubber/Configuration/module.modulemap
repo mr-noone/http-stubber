@@ -1,0 +1,4 @@
+module Configuration {
+  header "NSURLSessionConfiguration+Stubber.h"
+  export *
+}
