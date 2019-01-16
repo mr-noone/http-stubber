@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		64819B3A20C67847004B3E65 /* Stubber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64819B3020C67847004B3E65 /* Stubber.framework */; };
 		64819B4120C67847004B3E65 /* Stubber.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B3320C67847004B3E65 /* Stubber.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64819B5820C67D62004B3E65 /* HTTPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B5620C67D62004B3E65 /* HTTPMessage.h */; };
+		64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5720C67D62004B3E65 /* HTTPMessage.m */; };
+		64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,11 @@
 		64819B3420C67847004B3E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64819B3920C67847004B3E65 /* StubberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StubberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64819B4020C67847004B3E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64819B4D20C67A19004B3E65 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		64819B5120C67A9D004B3E65 /* Stubber.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Stubber.xcconfig; sourceTree = "<group>"; };
+		64819B5620C67D62004B3E65 /* HTTPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPMessage.h; sourceTree = "<group>"; };
+		64819B5720C67D62004B3E65 /* HTTPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPMessage.m; sourceTree = "<group>"; };
+		64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMessageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				64819B3320C67847004B3E65 /* Stubber.h */,
+				64819B4C20C679F3004B3E65 /* HTTPMessage */,
 				64819B4A20C6785C004B3E65 /* Support Files */,
 			);
 			path = Stubber;
@@ -78,6 +87,7 @@
 		64819B3D20C67847004B3E65 /* StubberTests */ = {
 			isa = PBXGroup;
 			children = (
+				64819B4E20C67A35004B3E65 /* HTTPMessage */,
 				64819B4B20C6786E004B3E65 /* Support Files */,
 			);
 			path = StubberTests;
@@ -86,6 +96,7 @@
 		64819B4A20C6785C004B3E65 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				64819B5120C67A9D004B3E65 /* Stubber.xcconfig */,
 				64819B3420C67847004B3E65 /* Info.plist */,
 			);
 			path = "Support Files";
@@ -99,6 +110,24 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
+		64819B4C20C679F3004B3E65 /* HTTPMessage */ = {
+			isa = PBXGroup;
+			children = (
+				64819B4D20C67A19004B3E65 /* module.modulemap */,
+				64819B5620C67D62004B3E65 /* HTTPMessage.h */,
+				64819B5720C67D62004B3E65 /* HTTPMessage.m */,
+			);
+			path = HTTPMessage;
+			sourceTree = "<group>";
+		};
+		64819B4E20C67A35004B3E65 /* HTTPMessage */ = {
+			isa = PBXGroup;
+			children = (
+				64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */,
+			);
+			path = HTTPMessage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -107,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64819B4120C67847004B3E65 /* Stubber.h in Headers */,
+				64819B5820C67D62004B3E65 /* HTTPMessage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +194,7 @@
 					};
 					64819B3820C67847004B3E65 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -207,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +263,7 @@
 /* Begin XCBuildConfiguration section */
 		64819B4220C67847004B3E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64819B5120C67A9D004B3E65 /* Stubber.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -293,6 +327,7 @@
 		};
 		64819B4320C67847004B3E65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64819B5120C67A9D004B3E65 /* Stubber.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -403,6 +438,7 @@
 		64819B4820C67847004B3E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9H8F23E62B;
 				INFOPLIST_FILE = "StubberTests/Support Files/Info.plist";
@@ -413,6 +449,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.StubberTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -421,6 +458,7 @@
 		64819B4920C67847004B3E65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9H8F23E62B;
 				INFOPLIST_FILE = "StubberTests/Support Files/Info.plist";

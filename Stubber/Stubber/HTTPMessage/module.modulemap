@@ -1,0 +1,4 @@
+module HTTPMessage {
+  header "HTTPMessage.h"
+  export *
+}
