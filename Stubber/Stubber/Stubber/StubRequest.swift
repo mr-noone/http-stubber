@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import HTTPMessage
 
 public protocol StubRequest: class {
   @discardableResult func withHeaders(_ headers: [String : String]) -> StubRequest

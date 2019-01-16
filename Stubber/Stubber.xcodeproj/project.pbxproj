@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B11F84F21D4C350000E0426 /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B11F84E21D4C350000E0426 /* HTTPMessage.swift */; };
 		6421365C20C934D800DA98F6 /* StubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421365B20C934D800DA98F6 /* StubTests.swift */; };
 		643771D920EF815E00082DA6 /* StubberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD7ECE20CA78F6005D1883 /* StubberTests.swift */; };
 		6437721220EF9D7500082DA6 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6437721020EF9D7500082DA6 /* NSObject+Runtime.m */; };
@@ -34,8 +35,6 @@
 		646064AA20C7F2A800CF92CE /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646064A920C7F2A800CF92CE /* StubURLProtocol.swift */; };
 		64819B3A20C67847004B3E65 /* Stubber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64819B3020C67847004B3E65 /* Stubber.framework */; };
 		64819B4120C67847004B3E65 /* Stubber.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B3320C67847004B3E65 /* Stubber.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64819B5820C67D62004B3E65 /* HTTPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B5620C67D62004B3E65 /* HTTPMessage.h */; };
-		64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5720C67D62004B3E65 /* HTTPMessage.m */; };
 		64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */; };
 		64819B6120C6C61B004B3E65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6020C6C61B004B3E65 /* Request.swift */; };
 		64819B6420C6CA07004B3E65 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6320C6CA07004B3E65 /* RequestTests.swift */; };
@@ -58,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B11F84E21D4C350000E0426 /* HTTPMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMessage.swift; sourceTree = "<group>"; };
 		6421365B20C934D800DA98F6 /* StubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTests.swift; sourceTree = "<group>"; };
 		643771DB20EF862A00082DA6 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		6437721020EF9D7500082DA6 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
@@ -88,10 +88,7 @@
 		64819B3420C67847004B3E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64819B3920C67847004B3E65 /* StubberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StubberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64819B4020C67847004B3E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64819B4D20C67A19004B3E65 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		64819B5120C67A9D004B3E65 /* Stubber.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Stubber.xcconfig; sourceTree = "<group>"; };
-		64819B5620C67D62004B3E65 /* HTTPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPMessage.h; sourceTree = "<group>"; };
-		64819B5720C67D62004B3E65 /* HTTPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPMessage.m; sourceTree = "<group>"; };
 		64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMessageTests.swift; sourceTree = "<group>"; };
 		64819B6020C6C61B004B3E65 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		64819B6320C6CA07004B3E65 /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
@@ -197,7 +194,6 @@
 				64819B3320C67847004B3E65 /* Stubber.h */,
 				64819B5F20C6C5FE004B3E65 /* Stubber */,
 				643771DA20EF860C00082DA6 /* Configuration */,
-				64819B4C20C679F3004B3E65 /* HTTPMessage */,
 				64819B4A20C6785C004B3E65 /* Support Files */,
 			);
 			path = Stubber;
@@ -208,7 +204,6 @@
 			children = (
 				64819B6220C6C9F9004B3E65 /* Stubber */,
 				6437721520EF9D9600082DA6 /* Configuration */,
-				64819B4E20C67A35004B3E65 /* HTTPMessage */,
 				64819B4B20C6786E004B3E65 /* Support Files */,
 			);
 			path = StubberTests;
@@ -233,24 +228,6 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
-		64819B4C20C679F3004B3E65 /* HTTPMessage */ = {
-			isa = PBXGroup;
-			children = (
-				64819B4D20C67A19004B3E65 /* module.modulemap */,
-				64819B5620C67D62004B3E65 /* HTTPMessage.h */,
-				64819B5720C67D62004B3E65 /* HTTPMessage.m */,
-			);
-			path = HTTPMessage;
-			sourceTree = "<group>";
-		};
-		64819B4E20C67A35004B3E65 /* HTTPMessage */ = {
-			isa = PBXGroup;
-			children = (
-				64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */,
-			);
-			path = HTTPMessage;
-			sourceTree = "<group>";
-		};
 		64819B5F20C6C5FE004B3E65 /* Stubber */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +240,7 @@
 				64D7DA8920F398D4006960EB /* Config.swift */,
 				64487EDF212C3F8800274DAE /* StubConfig.swift */,
 				646064A920C7F2A800CF92CE /* StubURLProtocol.swift */,
+				4B11F84E21D4C350000E0426 /* HTTPMessage.swift */,
 			);
 			path = Stubber;
 			sourceTree = "<group>";
@@ -277,6 +255,7 @@
 				646064A720C7F04B00CF92CE /* StubResponseTests.swift */,
 				6421365B20C934D800DA98F6 /* StubTests.swift */,
 				64D7DA8720F396CC006960EB /* StubURLProtocolTests.swift */,
+				64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */,
 			);
 			path = Stubber;
 			sourceTree = "<group>";
@@ -289,7 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64819B4120C67847004B3E65 /* Stubber.h in Headers */,
-				64819B5820C67D62004B3E65 /* HTTPMessage.h in Headers */,
 				6437721320EF9D7500082DA6 /* NSObject+Runtime.h in Headers */,
 				6437721A20EFA25600082DA6 /* NSURLSessionConfiguration+Stubber.h in Headers */,
 			);
@@ -403,10 +381,10 @@
 				64487EE0212C3F8800274DAE /* StubConfig.swift in Sources */,
 				6460649220C7D2B400CF92CE /* StubRequest.swift in Sources */,
 				64D7DA8A20F398D4006960EB /* Config.swift in Sources */,
-				64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */,
 				64819B6F20C7CDD9004B3E65 /* Response.swift in Sources */,
 				6437721B20EFA25600082DA6 /* NSURLSessionConfiguration+Stubber.m in Sources */,
 				64819B6120C6C61B004B3E65 /* Request.swift in Sources */,
+				4B11F84F21D4C350000E0426 /* HTTPMessage.swift in Sources */,
 				646064AA20C7F2A800CF92CE /* StubURLProtocol.swift in Sources */,
 				6460649020C7D27E00CF92CE /* Stub.swift in Sources */,
 			);

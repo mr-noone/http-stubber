@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import HTTPMessage
 
 protocol StubProtocol: class, Equatable {
   associatedtype Request: RequestProtocol

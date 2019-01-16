@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import HTTPMessage
 @testable import Stubber
 
 class StubRequestTests: XCTestCase {

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import HTTPMessage
+@testable import Stubber
 
 class HTTPMessageTests: XCTestCase {
   var message: HTTPMessage!
@@ -82,7 +82,7 @@ value1: key1\r
 {"key":"value"}
 """
     
-    XCTAssertEqual(message.serializedMessage, messageStr)
+    XCTAssertEqual(message?.serializedMessage, messageStr)
   }
   
   //MARK: - Common tests
