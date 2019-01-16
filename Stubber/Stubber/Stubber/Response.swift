@@ -10,18 +10,21 @@ import Foundation
 
 protocol ResponseProtocol: class, Equatable {
   var statusCode: Int? { get }
+  var error: Error? { get }
   var headers: [String : String]? { get }
   var body: Data? { get }
   
   init()
   
   func setStatusCode(_ statusCode: Int)
+  func setError(_ error: Error)
   func setHeaders(_ headers: [String : String]?)
   func setBody(_ body: Data?)
 }
 
 class Response: ResponseProtocol {
   private(set) var statusCode: Int?
+  private(set) var error: Error?
   private(set) var headers: [String : String]?
   private(set) var body: Data?
   
@@ -29,6 +32,10 @@ class Response: ResponseProtocol {
   
   func setStatusCode(_ statusCode: Int) {
     self.statusCode = statusCode
+  }
+  
+  func setError(_ error: Error) {
+    self.error = error
   }
   
   func setHeaders(_ headers: [String : String]?) {

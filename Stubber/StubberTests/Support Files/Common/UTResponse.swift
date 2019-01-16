@@ -11,6 +11,7 @@ import Foundation
 
 class UTResponse: ResponseProtocol {
   var statusCode: Int?
+  var error: Error?
   var headers: [String : String]?
   var body: Data?
   
@@ -18,6 +19,10 @@ class UTResponse: ResponseProtocol {
   
   func setStatusCode(_ statusCode: Int) {
     self.statusCode = statusCode
+  }
+  
+  func setError(_ error: Error) {
+    self.error = error
   }
   
   func setHeaders(_ headers: [String : String]?) {

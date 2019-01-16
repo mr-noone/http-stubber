@@ -16,6 +16,7 @@ public protocol StubRequest: class {
   
   @discardableResult func andResponse(_ statucCode: Int) -> StubResponse
   @discardableResult func andResponse(contentsOf url: URL) throws -> StubResponse
+  @discardableResult func andFailWithError(_ error: Error) -> StubResponse
 }
 
 extension StubRequest where Self: StubProtocol {
@@ -49,6 +50,11 @@ extension StubRequest where Self: StubProtocol & StubResponse {
     response.setHeaders(message.headers)
     response.setBody(message.body)
     
+    return self
+  }
+  
+  func andFailWithError(_ error: Error) -> StubResponse {
+    response.setError(error)
     return self
   }
 }

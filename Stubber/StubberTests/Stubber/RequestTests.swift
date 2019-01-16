@@ -10,7 +10,7 @@ import XCTest
 @testable import Stubber
 
 class RequestTests: XCTestCase {
-  func testRequestInit() {
+  func testRequestSetURL() {
     let request = Request()
     request.setMethod("POST", path: "/path", host: "127.0.0.1")
     XCTAssertNotNil(request)

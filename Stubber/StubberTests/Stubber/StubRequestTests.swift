@@ -57,5 +57,12 @@ class StubRequestTests: XCTestCase {
     XCTAssertEqual(stub.response.statusCode, message.statusCode)
     XCTAssertEqual(stub.response.headers, message.headers)
     XCTAssertEqual(stub.response.body, message.body)
-  }  
+  }
+  
+  func testStubRequestAndResponseWithError() {
+    let error = NSError(domain: "domain", code: 101, userInfo: nil)
+    self.stub.andFailWithError(error)
+    let stub = self.stub as! UTStub<UTRequest, UTResponse>
+    XCTAssertEqual(stub.response.error! as NSError, error)
+  }
 }

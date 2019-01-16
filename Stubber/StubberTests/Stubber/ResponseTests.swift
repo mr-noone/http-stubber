@@ -10,10 +10,17 @@ import XCTest
 @testable import Stubber
 
 class ResponseTests: XCTestCase {
-  func testResponseInit() {
+  func testResponseSetStatusCode() {
     let response = Response()
     response.setStatusCode(204)
     XCTAssertEqual(response.statusCode, 204)
+  }
+  
+  func testResponseSetError() {
+    let error = NSError(domain: "domain", code: 101, userInfo: nil)
+    let response = Response()
+    response.setError(error)
+    XCTAssertEqual(response.error! as NSError, error)
   }
   
   func testResponseSetHeaders() {
