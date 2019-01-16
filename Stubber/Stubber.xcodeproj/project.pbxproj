@@ -12,6 +12,10 @@
 		64819B5820C67D62004B3E65 /* HTTPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B5620C67D62004B3E65 /* HTTPMessage.h */; };
 		64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5720C67D62004B3E65 /* HTTPMessage.m */; };
 		64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */; };
+		64819B6120C6C61B004B3E65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6020C6C61B004B3E65 /* Request.swift */; };
+		64819B6420C6CA07004B3E65 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6320C6CA07004B3E65 /* RequestTests.swift */; };
+		64819B6F20C7CDD9004B3E65 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6E20C7CDD9004B3E65 /* Response.swift */; };
+		64819B7120C7CE45004B3E65 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B7020C7CE45004B3E65 /* ResponseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,10 @@
 		64819B5620C67D62004B3E65 /* HTTPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPMessage.h; sourceTree = "<group>"; };
 		64819B5720C67D62004B3E65 /* HTTPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPMessage.m; sourceTree = "<group>"; };
 		64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMessageTests.swift; sourceTree = "<group>"; };
+		64819B6020C6C61B004B3E65 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		64819B6320C6CA07004B3E65 /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
+		64819B6E20C7CDD9004B3E65 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		64819B7020C7CE45004B3E65 /* ResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				64819B3320C67847004B3E65 /* Stubber.h */,
+				64819B5F20C6C5FE004B3E65 /* Stubber */,
 				64819B4C20C679F3004B3E65 /* HTTPMessage */,
 				64819B4A20C6785C004B3E65 /* Support Files */,
 			);
@@ -87,6 +96,7 @@
 		64819B3D20C67847004B3E65 /* StubberTests */ = {
 			isa = PBXGroup;
 			children = (
+				64819B6220C6C9F9004B3E65 /* Stubber */,
 				64819B4E20C67A35004B3E65 /* HTTPMessage */,
 				64819B4B20C6786E004B3E65 /* Support Files */,
 			);
@@ -126,6 +136,24 @@
 				64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */,
 			);
 			path = HTTPMessage;
+			sourceTree = "<group>";
+		};
+		64819B5F20C6C5FE004B3E65 /* Stubber */ = {
+			isa = PBXGroup;
+			children = (
+				64819B6020C6C61B004B3E65 /* Request.swift */,
+				64819B6E20C7CDD9004B3E65 /* Response.swift */,
+			);
+			path = Stubber;
+			sourceTree = "<group>";
+		};
+		64819B6220C6C9F9004B3E65 /* Stubber */ = {
+			isa = PBXGroup;
+			children = (
+				64819B6320C6CA07004B3E65 /* RequestTests.swift */,
+				64819B7020C7CE45004B3E65 /* ResponseTests.swift */,
+			);
+			path = Stubber;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +219,7 @@
 				TargetAttributes = {
 					64819B2F20C67847004B3E65 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					64819B3820C67847004B3E65 = {
 						CreatedOnToolsVersion = 9.3;
@@ -239,6 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64819B5920C67D62004B3E65 /* HTTPMessage.m in Sources */,
+				64819B6F20C7CDD9004B3E65 /* Response.swift in Sources */,
+				64819B6120C6C61B004B3E65 /* Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */,
+				64819B7120C7CE45004B3E65 /* ResponseTests.swift in Sources */,
+				64819B6420C6CA07004B3E65 /* RequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +419,7 @@
 		64819B4520C67847004B3E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -404,6 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.stubber;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -412,6 +447,7 @@
 		64819B4620C67847004B3E65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -438,6 +474,7 @@
 		64819B4820C67847004B3E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9H8F23E62B;
@@ -458,6 +495,7 @@
 		64819B4920C67847004B3E65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9H8F23E62B;
