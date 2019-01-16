@@ -8,49 +8,55 @@
 
 import Foundation
 import Configuration
-import HTTPMessage
 
-private typealias StubType = Stub<Request, Response>
-private typealias URLProtocolType = StubURLProtocol<Config>
+//MARK: - Private
 
-private var isConfigured = false
+func stubRequest<C: ConfigProtocol>(_ method: String, path: String, host: String?, config: C.Type) -> C.StubConfig.Stub {
+  C.configure()
+  let stub = C.StubConfig.Stub.stubRequest(method, path: path, host: host)
+  C.URLProtocol.addStub(stub as! C.URLProtocol.C.Stub)
+  return stub
+}
+
+func stubRequest<C: ConfigProtocol>(contentsOf url: URL, config: C.Type) throws -> C.StubConfig.Stub {
+  C.configure()
+  let stub = try C.StubConfig.Stub.stubRequest(contentsOf: url)
+  C.URLProtocol.addStub(stub as! C.URLProtocol.C.Stub)
+  return stub
+}
+
+func removeStub<C: ConfigProtocol>(_ stub: C.StubConfig.Stub, config: C.Type) {
+  C.URLProtocol.removeStub(stub as! C.URLProtocol.C.Stub)
+}
+
+func removeAllStubs<C: ConfigProtocol>(config: C.Type) {
+  C.URLProtocol.removeAllStubs()
+}
+
+func setTestEnvironment<C: ConfigProtocol>(config: C.Type) {
+  C.URLProtocol.setTestEnvironment()
+}
+
+//MARK: - Public
 
 @discardableResult
 public func stubRequest(_ method: String, path: String, host: String? = nil) -> StubRequest {
-  if !isConfigured {
-    URLProtocol.registerClass(URLProtocolType.self)
-    URLSessionConfiguration.registerURLProtocol(URLProtocolType.self)
-    isConfigured = true
-  }
-  
-  let stub = StubType()
-  stub.request.setMethod(method, path: path, host: host)
-  URLProtocolType.addStub(stub)
-  return stub
+  return stubRequest(method, path: path, host: host, config: Config.self)
 }
 
 @discardableResult
 public func stubRequest(contentsOf url: URL) throws -> StubRequest {
-  let data = try Data(contentsOf: url)
-  let message = HTTPMessage(data: data, isRequest: true)
-  
-  let stub = stubRequest(message.method ?? "GET",
-                         path: message.path ?? "",
-                         host: message.host) as! StubType
-  stub.request.setHeaders(message.headers)
-  stub.request.setBody(message.body)
-  
-  return stub
+  return try stubRequest(contentsOf: url, config: Config.self)
 }
 
 public func removeStub(_ stub: StubRequest) {
-  URLProtocolType.removeStub(stub as! StubType)
+  removeStub(stub as! Config.StubConfig.Stub, config: Config.self)
 }
 
 public func removeAllStubs() {
-  URLProtocolType.removeAllStubs()
+  removeAllStubs(config: Config.self)
 }
 
 public func setTestEnvironment() {
-  URLProtocolType.setTestEnvironment()
+  setTestEnvironment(config: Config.self)
 }

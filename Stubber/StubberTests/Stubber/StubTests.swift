@@ -7,9 +7,34 @@
 //
 
 import XCTest
+import HTTPMessage
 @testable import Stubber
 
 class StubTests: XCTestCase {
+  func testStubRequest() {
+    let method = "TEST"
+    let path = "/path"
+    let host = "http://127.0.0.1"
+    
+    let stub = Stub<UTRequest, UTResponse>.stubRequest(method, path: path, host: host)
+    XCTAssertEqual(stub.request.method, method)
+    XCTAssertEqual(stub.request.path, path)
+    XCTAssertEqual(stub.request.host, host)
+  }
+  
+  func testStubRequestContentsOfUrl() {
+    let url = bundle.url(forResource: "Request", withExtension: nil)!
+    let data = try! Data(contentsOf: url)
+    let message = HTTPMessage(data: data, isRequest: true)
+    
+    let stub = try! Stub<UTRequest, UTResponse>.stubRequest(contentsOf: url)
+    XCTAssertEqual(stub.request.method, message.method)
+    XCTAssertEqual(stub.request.path, message.path)
+    XCTAssertEqual(stub.request.host, message.host)
+    XCTAssertEqual(stub.request.headers, message.headers)
+    XCTAssertEqual(stub.request.body, message.body)
+  }
+  
   func testStubIsEqual() {
     let stub1 = Stub<UTRequest, UTResponse>()
     stub1.request.setMethod("POST", path: "/path/to", host: "127.0.0.1")

@@ -9,15 +9,25 @@
 import Foundation
 
 protocol ConfigProtocol: class {
-  associatedtype Stub: StubProtocol
+  associatedtype StubConfig: StubConfigProtocol
+  associatedtype URLProtocol: IStubURLProtocol
   
-  static var stubs: [Stub] { get set }
-  static var isTestEnvironment: Bool { get set }
+  static var isConfigured: Bool { get }
+  
+  static func configure()
 }
 
 final class Config: ConfigProtocol {
-  typealias Stub = Stubber.Stub<Request, Response>
+  typealias StubConfig = Stubber.StubConfig
+  typealias URLProtocol = StubURLProtocol<StubConfig>
   
-  static var stubs = [Stub]()
-  static var isTestEnvironment = false
+  private(set) static var isConfigured: Bool = false
+  
+  static func configure() {
+    if !isConfigured {
+      Foundation.URLProtocol.registerClass(URLProtocol.self)
+      URLSessionConfiguration.registerURLProtocol(URLProtocol.self)
+      isConfigured = true
+    }
+  }
 }

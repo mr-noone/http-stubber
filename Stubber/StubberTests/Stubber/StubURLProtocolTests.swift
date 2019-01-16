@@ -9,13 +9,6 @@
 import XCTest
 @testable import Stubber
 
-final class UTConfig: ConfigProtocol {
-  typealias Stub = UTStub<UTRequest, UTResponse>
-  
-  static var stubs = [Stub]()
-  static var isTestEnvironment = false
-}
-
 final class UTURLProtocolClient: NSObject, URLProtocolClient {
   var error: Error?
   var response: HTTPURLResponse?
@@ -45,37 +38,37 @@ final class UTURLProtocolClient: NSObject, URLProtocolClient {
 }
 
 class StubURLProtocolTests: XCTestCase {
-  private typealias Stub = UTConfig.Stub
-  private typealias URLProtocol = StubURLProtocol<UTConfig>
+  private typealias Stub = UTStubConfig.Stub
+  private typealias URLProtocol = StubURLProtocol<UTStubConfig>
   
   override func tearDown() {
-    UTConfig.stubs = [UTConfig.Stub]()
-    UTConfig.isTestEnvironment = false
+    UTStubConfig.stubs = [UTStubConfig.Stub]()
+    UTStubConfig.isTestEnvironment = false
     super.tearDown()
   }
   
   func testAddStub() {
     let stub = Stub()
     URLProtocol.addStub(stub)
-    XCTAssertTrue(UTConfig.stubs.contains(stub))
+    XCTAssertTrue(UTStubConfig.stubs.contains(stub))
   }
   
   func testRemoveStub() {
     let stub = Stub()
-    UTConfig.stubs = [stub]
+    UTStubConfig.stubs = [stub]
     URLProtocol.removeStub(stub)
-    XCTAssertFalse(UTConfig.stubs.contains(stub))
+    XCTAssertFalse(UTStubConfig.stubs.contains(stub))
   }
   
   func testRemoveAllStubs() {
-    UTConfig.stubs = [Stub(), Stub(), Stub()]
+    UTStubConfig.stubs = [Stub(), Stub(), Stub()]
     URLProtocol.removeAllStubs()
-    XCTAssertEqual(UTConfig.stubs.count, 0)
+    XCTAssertEqual(UTStubConfig.stubs.count, 0)
   }
   
   func testSetTestEnvironment() {
     URLProtocol.setTestEnvironment()
-    XCTAssertTrue(UTConfig.isTestEnvironment)
+    XCTAssertTrue(UTStubConfig.isTestEnvironment)
   }
   
   func testCanInitWithTestEnvironment() {
@@ -87,7 +80,7 @@ class StubURLProtocolTests: XCTestCase {
   func testCanInitWithContainsStubWithHost() {
     let stub = Stub()
     stub.request.setMethod("TEST", path: "/path", host: "127.0.0.1")
-    UTConfig.stubs = [stub]
+    UTStubConfig.stubs = [stub]
     
     let url = URL(string: "http://127.0.0.1/path")!
     var request = URLRequest(url: url)
@@ -99,7 +92,7 @@ class StubURLProtocolTests: XCTestCase {
   func testCanInitWithContainsStubWithoutHost() {
     let stub = Stub()
     stub.request.setMethod("TEST", path: "/path", host: nil)
-    UTConfig.stubs = [stub]
+    UTStubConfig.stubs = [stub]
     
     let url = URL(string: "http://127.0.0.1/path")!
     var request = URLRequest(url: url)
@@ -128,7 +121,7 @@ class StubURLProtocolTests: XCTestCase {
   func testStartLoadingWithErrorResponse() {
     let error = NSError(domain: "", code: 0, userInfo: nil)
     
-    UTConfig.stubs = {
+    UTStubConfig.stubs = {
       let stub = Stub()
       stub.request.setMethod("GET", path: "", host: nil)
       stub.response.setError(error)
@@ -147,7 +140,7 @@ class StubURLProtocolTests: XCTestCase {
     let headers = ["key" : "value"]
     let body = "body".data(using: .utf8)!
     
-    UTConfig.stubs = {
+    UTStubConfig.stubs = {
       let stub = Stub()
       stub.request.setMethod("GET", path: "", host: nil)
       stub.response.setStatusCode(statusCode)
@@ -167,7 +160,7 @@ class StubURLProtocolTests: XCTestCase {
   }
   
   func testStartLoadingWithoutResponse() {
-    UTConfig.stubs = {
+    UTStubConfig.stubs = {
       let stub = Stub()
       stub.request.setMethod("GET", path: "", host: nil)
       return [stub]

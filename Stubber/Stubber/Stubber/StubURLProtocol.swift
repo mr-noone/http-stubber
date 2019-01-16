@@ -8,7 +8,19 @@
 
 import Foundation
 
-final class StubURLProtocol<C: ConfigProtocol>: URLProtocol {
+protocol IStubURLProtocol where Self: URLProtocol {
+  associatedtype C: StubConfigProtocol
+  
+  static var stubs: [C.Stub] { get }
+  static var isTestEnvironment: Bool { get }
+  
+  static func addStub(_ stub: C.Stub)
+  static func removeStub(_ stub: C.Stub)
+  static func removeAllStubs()
+  static func setTestEnvironment()
+}
+
+final class StubURLProtocol<C: StubConfigProtocol>: URLProtocol, IStubURLProtocol {
   //MARK: - Properties
   
   private(set) static var stubs: [C.Stub] {
