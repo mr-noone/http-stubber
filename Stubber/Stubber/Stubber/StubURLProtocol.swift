@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol IStubURLProtocol where Self: URLProtocol {
+protocol URLProtocol where Self: Foundation.URLProtocol {
   associatedtype C: StubConfigProtocol
   
   static var stubs: [C.Stub] { get }
@@ -20,7 +20,7 @@ protocol IStubURLProtocol where Self: URLProtocol {
   static func setTestEnvironment()
 }
 
-final class StubURLProtocol<C: StubConfigProtocol>: URLProtocol, IStubURLProtocol {
+final class StubURLProtocol<C: StubConfigProtocol>: Foundation.URLProtocol, URLProtocol {
   //MARK: - Properties
   
   private(set) static var stubs: [C.Stub] {

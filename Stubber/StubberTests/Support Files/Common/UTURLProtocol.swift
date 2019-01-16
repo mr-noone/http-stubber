@@ -9,7 +9,7 @@
 import Foundation
 @testable import Stubber
 
-final class UTURLProtocol<C: StubConfigProtocol>: URLProtocol, IStubURLProtocol {
+final class UTURLProtocol<C: StubConfigProtocol>: Foundation.URLProtocol, Stubber.URLProtocol {
   static var stubs: [C.Stub] {
     get { return C.stubs }
     set { C.stubs = newValue }

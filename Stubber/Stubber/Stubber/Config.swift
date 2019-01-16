@@ -10,7 +10,7 @@ import Foundation
 
 protocol ConfigProtocol: class {
   associatedtype StubConfig: StubConfigProtocol
-  associatedtype URLProtocol: IStubURLProtocol
+  associatedtype URLProtocol: Stubber.URLProtocol
   
   static var isConfigured: Bool { get }
   
