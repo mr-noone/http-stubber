@@ -30,7 +30,7 @@
 		646064A620C7EF0500CF92CE /* Response in Resources */ = {isa = PBXBuildFile; fileRef = 646064A520C7EF0500CF92CE /* Response */; };
 		646064A820C7F04B00CF92CE /* StubResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646064A720C7F04B00CF92CE /* StubResponseTests.swift */; };
 		646064AA20C7F2A800CF92CE /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646064A920C7F2A800CF92CE /* StubURLProtocol.swift */; };
-		64819B3A20C67847004B3E65 /* Stubber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64819B3020C67847004B3E65 /* Stubber.framework */; };
+		64819B3A20C67847004B3E65 /* HTTPStubber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64819B3020C67847004B3E65 /* HTTPStubber.framework */; };
 		64819B4120C67847004B3E65 /* Stubber.h in Headers */ = {isa = PBXBuildFile; fileRef = 64819B3320C67847004B3E65 /* Stubber.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64819B5E20C69C4B004B3E65 /* HTTPMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B5D20C69C4B004B3E65 /* HTTPMessageTests.swift */; };
 		64819B6120C6C61B004B3E65 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64819B6020C6C61B004B3E65 /* Request.swift */; };
@@ -58,7 +58,8 @@
 		4B11F85421D4F9FA000E0426 /* URLSessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionConfiguration.swift; sourceTree = "<group>"; };
 		4B11F85921D4FA80000E0426 /* URLSessionConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLSessionConfiguration.m; sourceTree = "<group>"; };
 		4B3FE5A321D5180D000CC40A /* URLSessionConfiguration+StubberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+StubberTests.swift"; sourceTree = "<group>"; };
-		4B482CC321EF2CFE00812CBB /* Stubber.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Stubber.podspec; path = ../../../Stubber.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4B482CC321EF2CFE00812CBB /* HTTPStubber.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = HTTPStubber.podspec; path = ../../../HTTPStubber.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4B709D30221ECE5200FC3E7B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../../../LICENSE; sourceTree = "<group>"; };
 		6421365B20C934D800DA98F6 /* StubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTests.swift; sourceTree = "<group>"; };
 		64487EDF212C3F8800274DAE /* StubConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubConfig.swift; sourceTree = "<group>"; };
 		64487EE1212D562B00274DAE /* Request */ = {isa = PBXFileReference; lastKnownFileType = text; path = Request; sourceTree = "<group>"; };
@@ -77,7 +78,7 @@
 		646064A520C7EF0500CF92CE /* Response */ = {isa = PBXFileReference; lastKnownFileType = text; path = Response; sourceTree = "<group>"; };
 		646064A720C7F04B00CF92CE /* StubResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponseTests.swift; sourceTree = "<group>"; };
 		646064A920C7F2A800CF92CE /* StubURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLProtocol.swift; sourceTree = "<group>"; };
-		64819B3020C67847004B3E65 /* Stubber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stubber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64819B3020C67847004B3E65 /* HTTPStubber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPStubber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64819B3320C67847004B3E65 /* Stubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stubber.h; sourceTree = "<group>"; };
 		64819B3420C67847004B3E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64819B3920C67847004B3E65 /* StubberTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StubberTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64819B3A20C67847004B3E65 /* Stubber.framework in Frameworks */,
+				64819B3A20C67847004B3E65 /* HTTPStubber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +156,7 @@
 		64819B3120C67847004B3E65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64819B3020C67847004B3E65 /* Stubber.framework */,
+				64819B3020C67847004B3E65 /* HTTPStubber.framework */,
 				64819B3920C67847004B3E65 /* StubberTests.xctest */,
 			);
 			name = Products;
@@ -183,7 +184,8 @@
 		64819B4A20C6785C004B3E65 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B482CC321EF2CFE00812CBB /* Stubber.podspec */,
+				4B709D30221ECE5200FC3E7B /* LICENSE */,
+				4B482CC321EF2CFE00812CBB /* HTTPStubber.podspec */,
 				64819B5120C67A9D004B3E65 /* Stubber.xcconfig */,
 				64819B3420C67847004B3E65 /* Info.plist */,
 			);
@@ -264,7 +266,7 @@
 			);
 			name = Stubber;
 			productName = Stubber;
-			productReference = 64819B3020C67847004B3E65 /* Stubber.framework */;
+			productReference = 64819B3020C67847004B3E65 /* HTTPStubber.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		64819B3820C67847004B3E65 /* StubberTests */ = {
@@ -541,7 +543,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.stubber;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "HTTP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -570,7 +572,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.stubber;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "HTTP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

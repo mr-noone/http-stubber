@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Stubber
+@testable import HTTPStubber
 
 class URLSessionConfiguration_StubberTests: XCTestCase {
   func testDefaultSessionConfiguration() {

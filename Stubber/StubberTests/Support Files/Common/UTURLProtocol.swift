@@ -7,9 +7,9 @@
 //
 
 import Foundation
-@testable import Stubber
+@testable import HTTPStubber
 
-final class UTURLProtocol<C: StubConfigProtocol>: Foundation.URLProtocol, Stubber.URLProtocol {
+final class UTURLProtocol<C: StubConfigProtocol>: Foundation.URLProtocol, HTTPStubber.URLProtocol {
   static var stubs: [C.Stub] {
     get { return C.stubs }
     set { C.stubs = newValue }

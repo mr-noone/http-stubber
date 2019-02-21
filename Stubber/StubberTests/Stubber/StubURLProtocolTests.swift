@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Stubber
+@testable import HTTPStubber
 
 final class UTURLProtocolClient: NSObject, URLProtocolClient {
   var error: Error?

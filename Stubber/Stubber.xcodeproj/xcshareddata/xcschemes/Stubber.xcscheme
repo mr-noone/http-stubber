@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64819B2F20C67847004B3E65"
-               BuildableName = "Stubber.framework"
+               BuildableName = "HTTPStubber.framework"
                BlueprintName = "Stubber"
                ReferencedContainer = "container:Stubber.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64819B2F20C67847004B3E65"
-            BuildableName = "Stubber.framework"
+            BuildableName = "HTTPStubber.framework"
             BlueprintName = "Stubber"
             ReferencedContainer = "container:Stubber.xcodeproj">
          </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64819B2F20C67847004B3E65"
-            BuildableName = "Stubber.framework"
+            BuildableName = "HTTPStubber.framework"
             BlueprintName = "Stubber"
             ReferencedContainer = "container:Stubber.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64819B2F20C67847004B3E65"
-            BuildableName = "Stubber.framework"
+            BuildableName = "HTTPStubber.framework"
             BlueprintName = "Stubber"
             ReferencedContainer = "container:Stubber.xcodeproj">
          </BuildableReference>
@@ -94,7 +94,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64819B2F20C67847004B3E65"
-            BuildableName = "Stubber.framework"
+            BuildableName = "HTTPStubber.framework"
             BlueprintName = "Stubber"
             ReferencedContainer = "container:Stubber.xcodeproj">
          </BuildableReference>
