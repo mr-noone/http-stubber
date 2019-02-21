@@ -1,0 +1,9 @@
+//
+//  Stubber.xcconfig
+//  Stubber
+//
+//  Created by Aleksey Zgurskiy on 05.06.2018.
+//  Copyright © 2018 Graviti Mobail, TOV. All rights reserved.
+//
+
+SWIFT_INCLUDE_PATHS = $(SRCROOT)/Stubber
