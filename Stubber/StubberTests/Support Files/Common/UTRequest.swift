@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Stubber
+@testable import HTTPStubber
 
 class UTRequest: RequestProtocol {
   var host: String?

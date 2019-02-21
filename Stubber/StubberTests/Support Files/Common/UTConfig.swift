@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Stubber
+@testable import HTTPStubber
 
 final class UTConfig: ConfigProtocol {
   typealias StubConfig = UTStubConfig

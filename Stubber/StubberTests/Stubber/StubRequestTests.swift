@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Stubber
+@testable import HTTPStubber
 
 class StubRequestTests: XCTestCase {
   private typealias Stub = UTStub<UTRequest, UTResponse>

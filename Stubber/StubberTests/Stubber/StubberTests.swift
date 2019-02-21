@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Stubber
+@testable import HTTPStubber
 
 class StubberTests: XCTestCase {
   override func setUp() {

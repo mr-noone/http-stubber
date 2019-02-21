@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Stubber
+@testable import HTTPStubber
 
 final class UTStub<Request: RequestProtocol, Response: ResponseProtocol>: StubProtocol, StubRequest, StubResponse {
   private(set) lazy var request: Request = Request()

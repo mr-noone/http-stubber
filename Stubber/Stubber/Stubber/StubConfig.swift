@@ -16,7 +16,7 @@ protocol StubConfigProtocol: class {
 }
 
 final class StubConfig: StubConfigProtocol {
-  typealias Stub = Stubber.Stub<Request, Response>
+  typealias Stub = HTTPStubber.Stub<Request, Response>
   
   static var stubs = [Stub]()
   static var isTestEnvironment = false

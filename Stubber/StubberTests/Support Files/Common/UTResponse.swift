@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Stubber
+@testable import HTTPStubber
 
 class UTResponse: ResponseProtocol {
   var statusCode: Int?
