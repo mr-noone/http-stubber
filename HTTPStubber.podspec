@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'HTTPStubber'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   
   s.summary = 'HTTPStubber - A library for stabbing HTTP requests in Swift.'
   s.homepage = 'https://github.com/mr-noone/http-stubber'
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   
   s.source = { :git => 'https://github.com/mr-noone/http-stubber.git', :tag => "#{s.version}" }
   s.source_files = 'Stubber/Stubber/**/*.{swift,h,m}'
-  s.swift_version = '4.1'
+  s.swift_version = '5.0'
 end

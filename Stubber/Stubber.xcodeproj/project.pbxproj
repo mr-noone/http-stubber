@@ -299,11 +299,11 @@
 				TargetAttributes = {
 					64819B2F20C67847004B3E65 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1110;
 					};
 					64819B3820C67847004B3E65 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -546,7 +546,7 @@
 				PRODUCT_NAME = "HTTP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -574,7 +574,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.stubber;
 				PRODUCT_NAME = "HTTP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -596,7 +596,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "StubberTests/Support Files/Common/StubberTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -617,7 +617,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nullgr.StubberTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "StubberTests/Support Files/Common/StubberTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
