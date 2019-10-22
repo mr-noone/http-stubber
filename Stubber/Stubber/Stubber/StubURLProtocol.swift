@@ -40,7 +40,7 @@ final class StubURLProtocol<C: StubConfigProtocol>: Foundation.URLProtocol, URLP
   }
   
   static func removeStub(_ stub: C.Stub) {
-    if let index = stubs.index(where: { $0 == stub }) {
+    if let index = stubs.firstIndex(where: { $0 == stub }) {
       stubs.remove(at: index)
     }
   }
