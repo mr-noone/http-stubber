@@ -14,11 +14,7 @@ struct HTTPMessage {
   
   init(data: Data, isRequest: Bool) {
     self.message = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, isRequest).takeRetainedValue()
-    
-    let bytes = data.withUnsafeBytes { (bytes: UnsafePointer<UInt8>) in
-      Array(UnsafeBufferPointer(start: bytes, count: data.count / MemoryLayout<UInt8>.stride))
-    }
-    
+    let bytes = Array<UInt8>(data)
     CFHTTPMessageAppendBytes(self.message, bytes, data.count)
   }
   
