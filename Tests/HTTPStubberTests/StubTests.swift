@@ -2,6 +2,34 @@ import XCTest
 @testable import HTTPStubber
 
 class StubTests: XCTestCase {
+    func testInitStubStartWithSlashPathWithSchema() {
+        let stub = Stub(method: "TEST", path: "/path", host: "https://127.0.0.1")
+        XCTAssertEqual(stub.request.method, "TEST")
+        XCTAssertEqual(stub.request.path, "/path")
+        XCTAssertEqual(stub.request.host, "127.0.0.1")
+    }
+    
+    func testInitStubStartWithoutSlashPathWithoutSchema() {
+        let stub = Stub(method: "TEST", path: "path", host: "127.0.0.1")
+        XCTAssertEqual(stub.request.method, "TEST")
+        XCTAssertEqual(stub.request.path, "/path")
+        XCTAssertEqual(stub.request.host, "127.0.0.1")
+    }
+    
+    func testInitStubWithEmptyPathWithEmptyHost() {
+        let stub = Stub(method: "TEST", path: "", host: "")
+        XCTAssertEqual(stub.request.method, "TEST")
+        XCTAssertEqual(stub.request.path, "")
+        XCTAssertEqual(stub.request.host, nil)
+    }
+    
+    func testInitStubWithEmptyPathWithOnlySchemaHost() {
+        let stub = Stub(method: "TEST", path: "", host: "https://")
+        XCTAssertEqual(stub.request.method, "TEST")
+        XCTAssertEqual(stub.request.path, "")
+        XCTAssertEqual(stub.request.host, nil)
+    }
+    
     func testInitStub() {
         let method = "TEST"
         let path = "/path"
