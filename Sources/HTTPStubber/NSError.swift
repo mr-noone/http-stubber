@@ -9,12 +9,12 @@ extension NSError {
         ])
     }
     
-    static func unexpectedHTTP(requestHeaders: [String : String]?, stubHeaders: [String : String]?) -> NSError {
-        let reason = "An unexpected HTTP request headers."
+    static func requiredHTTP(headerMissing header: String, value: String) -> NSError {
+        let reason = "Required http header missing."
         return NSError(domain: NSURLErrorDomain, code: -1, userInfo: [
             NSLocalizedDescriptionKey : reason,
-            "HeadersInRequest" : requestHeaders ?? [:],
-            "HeadersInStub" : stubHeaders ?? [:]
+            "Required header" : header,
+            "Required value" : value
         ])
     }
     
