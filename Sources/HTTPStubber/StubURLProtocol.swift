@@ -71,13 +71,14 @@ public final class StubURLProtocol: Foundation.URLProtocol, URLProtocol {
         if let error = stub.response.error {
             client?.urlProtocol(self, didFailWithError: error)
         } else {
-            if Self.isTestEnvironment && (stub.request.headers ?? [:]) != (request.allHTTPHeaderFields ?? [:]) {
-                let error = NSError.unexpectedHTTP(
-                    requestHeaders: request.allHTTPHeaderFields,
-                    stubHeaders: stub.request.headers
-                )
-                client?.urlProtocol(self, didFailWithError: error)
-                return
+            if Self.isTestEnvironment {
+                for (key, value) in (stub.request.headers ?? [:]) {
+                    if (request.allHTTPHeaderFields ?? [:])[key] != value {
+                        let error = NSError.requiredHTTP(headerMissing: key, value: value)
+                        client?.urlProtocol(self, didFailWithError: error)
+                        return
+                    }
+                }
             }
             
             if Self.isTestEnvironment && (stub.request.body ?? Data()) != (request.httpBody ?? Data()) {

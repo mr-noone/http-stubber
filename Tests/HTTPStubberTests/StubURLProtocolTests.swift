@@ -143,16 +143,18 @@ class StubURLProtocolTests: XCTestCase {
         XCTAssertTrue(urlClient.isFinishLoading)
     }
     
-    func testStartLoadingUnexpectedHeaders() {
+    func testStartLoadingRequiredHeaderMissing() {
         let urlClient = UTURLProtocolClient()
-        let request = URLRequest(url: URL(string: "http://127.0.0.1")!)
         let headers = ["Header" : "Value"]
+        var request = URLRequest(url: URL(string: "http://127.0.0.1")!)
+        request.addValue("Test", forHTTPHeaderField: "Test")
+        
         
         StubURLProtocol.isTestEnvironment = true
         StubURLProtocol.stubs = [Stub().setRequest(headers: headers)]
         StubURLProtocol(request: request, cachedResponse: nil, client: urlClient).startLoading()
         
-        XCTAssertEqual(urlClient.error as NSError?, NSError.unexpectedHTTP(requestHeaders: [:], stubHeaders: headers))
+        XCTAssertEqual(urlClient.error as NSError?, NSError.requiredHTTP(headerMissing: "Header", value: "Value"))
     }
     
     func testStartLoadingEmptyHeaders() {
