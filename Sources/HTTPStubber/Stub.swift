@@ -92,6 +92,11 @@ public final class Stub: Equatable {
         return self
     }
     
+    public func setRequest(body string: String, using encoding: String.Encoding = .utf8) -> Stub {
+        request.body = string.data(using: encoding)
+        return self
+    }
+    
     public func setRequest(body data: Data) -> Stub {
         request.body = data
         return self
