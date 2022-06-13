@@ -187,6 +187,11 @@ public final class Stub: Equatable {
         return self
     }
     
+    public func setResponse(body string: String, using encoding: String.Encoding = .utf8) -> Stub {
+        request.body = string.data(using: encoding)
+        return self
+    }
+    
     public func setResponse(body data: Data) -> Stub {
         response.body = data
         return self
