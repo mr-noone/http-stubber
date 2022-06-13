@@ -96,6 +96,18 @@ class StubTests: XCTestCase {
         XCTAssertEqual(stub.request.body, data)
     }
     
+    func testSetRequestBodyFromString() {
+        let string = "Test string"
+        let stub = Stub(method: "GET", path: "/path").setRequest(body: string, using: .utf8)
+        XCTAssertEqual(stub.request.body, string.data(using: .utf8))
+    }
+    
+    func testSetRequestBodyFromEncodable() throws {
+        let body = ["key" : "value"]
+        let stub = try Stub(method: "GET", path: "/path").setRequest(body: body, encoder: JSONEncoder())
+        XCTAssertEqual(stub.request.body, try JSONEncoder().encode(body))
+    }
+    
     func testSetRequestBodyContentsOfURL() {
         let url = bundle.url(forResource: "Body", withExtension: "json")!
         let data = try! Data(contentsOf: url)
@@ -153,6 +165,18 @@ class StubTests: XCTestCase {
         let data = try! Data(contentsOf: url)
         let stub = Stub(method: "GET", path: "/path").setResponse(body: data)
         XCTAssertEqual(stub.response.body, data)
+    }
+    
+    func testSetResponseBodyFromString() {
+        let string = "Test string"
+        let stub = Stub(method: "GET", path: "/path").setResponse(body: string, using: .utf8)
+        XCTAssertEqual(stub.response.body, string.data(using: .utf8))
+    }
+    
+    func testSetResponseBodyFromEncodable() throws {
+        let body = ["key" : "value"]
+        let stub = try Stub(method: "GET", path: "/path").setResponse(body: body, encoder: JSONEncoder())
+        XCTAssertEqual(stub.response.body, try JSONEncoder().encode(body))
     }
     
     func testSetResponseBodyContentsOfURL() {
