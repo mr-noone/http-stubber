@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 public final class Stub: Equatable {
     // MARK: - Inits
@@ -97,6 +98,12 @@ public final class Stub: Equatable {
         return self
     }
     
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    public func setRequest<T: Encodable, E: TopLevelEncoder>(body value: T, encoder: E) throws -> Stub where E.Output == Data {
+        request.body = try encoder.encode(value)
+        return self
+    }
+    
     public func setRequest(body data: Data) -> Stub {
         request.body = data
         return self
@@ -188,9 +195,16 @@ public final class Stub: Equatable {
     }
     
     public func setResponse(body string: String, using encoding: String.Encoding = .utf8) -> Stub {
-        request.body = string.data(using: encoding)
+        response.body = string.data(using: encoding)
         return self
     }
+    
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    public func setResponse<T: Encodable, E: TopLevelEncoder>(body value: T, encoder: E) throws -> Stub where E.Output == Data {
+        response.body = try encoder.encode(value)
+        return self
+    }
+    
     
     public func setResponse(body data: Data) -> Stub {
         response.body = data
