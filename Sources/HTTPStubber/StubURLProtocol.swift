@@ -15,6 +15,8 @@ public final class StubURLProtocol: Foundation.URLProtocol, URLProtocol {
     static var stubs: [Stub] = []
     static var isTestEnvironment: Bool = false
     
+    lazy var httpBody: Data? = readHTTPBodyStream()
+    
     // MARK: - Stubs management
     
     public static func addStub(_ stub: Stub) {
@@ -52,6 +54,25 @@ public final class StubURLProtocol: Foundation.URLProtocol, URLProtocol {
         }
     }
     
+    private func readHTTPBodyStream() -> Data? {
+        guard let httpBodyStream = request.httpBodyStream else { return nil }
+        httpBodyStream.open()
+        
+        let bufferSize: Int = 16
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        var httpBody = Data()
+        
+        while httpBodyStream.hasBytesAvailable {
+            let count = httpBodyStream.read(buffer, maxLength: bufferSize)
+            httpBody.append(buffer, count: count)
+        }
+        
+        buffer.deallocate()
+        httpBodyStream.close()
+        
+        return httpBody
+    }
+    
     //MARK: - URLProtocol
     
     public override class func canInit(with request: URLRequest) -> Bool {
@@ -81,9 +102,9 @@ public final class StubURLProtocol: Foundation.URLProtocol, URLProtocol {
                 }
             }
             
-            if Self.isTestEnvironment && (stub.request.body ?? Data()) != (request.httpBody ?? Data()) {
+            if Self.isTestEnvironment && (stub.request.body ?? Data()) != (httpBody ?? Data()) {
                 let error = NSError.unexpectedHTTP(
-                    requestBody: request.httpBody,
+                    requestBody: httpBody,
                     stubBody: stub.request.body
                 )
                 client?.urlProtocol(self, didFailWithError: error)
