@@ -37,6 +37,17 @@ class StubURLProtocolTests: XCTestCase {
         XCTAssertFalse(StubURLProtocol.isTestEnvironment)
     }
     
+    func testHTTPBody() {
+        let data = "Test string".data(using: .utf8)!
+        var request = URLRequest(url: URL(string: "http://127.0.0.1")!)
+        request.httpBodyStream = InputStream(data: data)
+        
+        StubURLProtocol.setTestEnvironment()
+        let urlProtocol = StubURLProtocol(request: request, cachedResponse: nil, client: nil)
+        
+        XCTAssertEqual(urlProtocol.httpBody, data)
+    }
+    
     func testCanInitWithTestEnvironment() {
         let request = URLRequest(url: URL(string: "http://127.0.0.1")!)
         StubURLProtocol.setTestEnvironment()
