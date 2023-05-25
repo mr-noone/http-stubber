@@ -179,10 +179,17 @@ class StubTests: XCTestCase {
         XCTAssertEqual(stub.response.body, try JSONEncoder().encode(body))
     }
     
-    func testSetResponseBodyContentsOfURL() {
+    func testSetResponseBodyContentsInBundle() throws {
         let url = bundle.url(forResource: "Body", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        let stub = try! Stub(method: "GET", path: "/path").setResponse(bodyContentsOf: url)
+        let data = try Data(contentsOf: url)
+        let stub = try Stub(method: "GET", path: "/path").setResponse(bodyContentsIn: bundle, name: "Body", extension: "json")
+        XCTAssertEqual(stub.response.body, data)
+    }
+    
+    func testSetResponseBodyContentsOfURL() throws {
+        let url = bundle.url(forResource: "Body", withExtension: "json")!
+        let data = try Data(contentsOf: url)
+        let stub = try Stub(method: "GET", path: "/path").setResponse(bodyContentsOf: url)
         XCTAssertEqual(stub.response.body, data)
     }
     
