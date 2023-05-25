@@ -1,6 +1,16 @@
 import Foundation
 
 extension NSError {
+    static func fileNotFound(name: String?, extension: String?, bundle: Bundle) -> NSError {
+        let reason = "Could not find file."
+        return NSError(domain: NSURLErrorDomain, code: -1, userInfo: [
+            NSLocalizedDescriptionKey : reason,
+            "File name" : name ?? "nil",
+            "File extension" : `extension` ?? "nil",
+            "Bundle" : bundle
+        ])
+    }
+    
     static func unexpectedHTTP(request: URLRequest) -> NSError {
         let httpMessage = HTTPMessage(request: request)?.serializedMessage ?? ""
         let reason = "An unexpected HTTP request was fired:\n\n\(httpMessage)"

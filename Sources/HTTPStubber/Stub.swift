@@ -211,6 +211,13 @@ public final class Stub: Equatable {
         return self
     }
     
+    public func setResponse(bodyContentsIn bundle: Bundle, name: String?, extension: String?) throws -> Stub {
+        guard let url = bundle.url(forResource: name, withExtension: `extension`) else {
+            throw NSError.fileNotFound(name: name, extension: `extension`, bundle: bundle)
+        }
+        return try setResponse(bodyContentsOf: url)
+    }
+    
     public func setResponse(bodyContentsOf url: URL) throws -> Stub {
         response.body = try Data(contentsOf: url)
         return self
